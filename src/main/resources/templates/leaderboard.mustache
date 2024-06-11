@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+        <link rel="stylesheet" href="../static/leaderboard">
+        <script src="http://localhost:35729/livereload.js" rel="preload" async></script>
+        <title>Leaderboard</title>
+    </head>
+    <body>
+        <div class="leaderboard">
+            <h1>Leaderboard</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>Platz</th>
+                    <th>Name</th>
+                    <th>Highscore</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>X.</td>                                                                                         <!-- Kommt wenn die Datenbank steht -->
+                    <td id="username">{{username}}</td>                                                                 <!-- Kommt wenn die Datenbank steht -->
+                    <td id="highscore">XXX</td>                                                                         <!-- Kommt wenn die Datenbank steht -->
+                </tr>
+            </table>
+            <button class="button" onclick="location.href='profile'">Zurück</button>
+        </div>
+<!-- Rest kommt wenn die Datenbank steht -->
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<!-- Bleibt fürs erste, wird vllt entfernt -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+        <link rel="stylesheet" href="../static/registerLogin">
+        <script src="http://localhost:35729/livereload.js" rel="preload" async></script>
+        <title>Registrierung / Anmeldung</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1 id="form-title">Anmeldung</h1>
+            <form action="mainMenu" method="post" id="auth-form">
+                <label for="username">Benutzername:</label>
+                <input type="text" id="username" name="username" placeholder="Benutzername" required>
+                <label for="password">Passwort:</label>
+                <input type="password" id="password" name="password" placeholder="Passwort" required>
+                <button type="submit" value="log-in" id="form-button">Anmelden</button>
+            </form>
+            <button onclick="switchForm()" value="register" id="switch-button">Registrierung</button>
+        </div>
+        <script>
+            let isRegister = false;
+            function switchForm()
+            {
+                isRegister = !isRegister;
+                document.getElementById('form-title').innerText = isRegister ? 'Registrierung' : 'Anmeldung';
+                document.getElementById('form-button').innerText = isRegister ? 'Registrieren' : 'Anmelden';
+                document.getElementById('switch-button').innerText = isRegister ? 'Zurück zur Anmeldung' : 'Zur Registrierung';
+            }
+        </script>
+    </body>
+</html>

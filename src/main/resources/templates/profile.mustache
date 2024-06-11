@@ -1,0 +1,25 @@
+<!-- Bleibt fürs erste, wird vllt entfernt -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+        <link rel="stylesheet" href="../static/profile">
+        <script src="http://localhost:35729/livereload.js" rel="preload" async></script>
+        <title>Profil</title>
+    </head>
+    <body>
+        <div class="profile-container">
+            <h1>Profil</h1>
+            <div class="profile-pic">
+                <img src="../static/user-icon.png" alt="Profilbild">
+                <h2 id="username">{{username}}</h2>
+            </div>
+            <h3>Persönlicher Highscore:</h3>
+            <h4 id="highscore">XXX</h4>                                                                                 <!-- Kommt wenn die Datenbank steht -->
+            <button class="button" onclick="location.href='leaderboard'">Leaderboard</button>
+            <button class="button" onclick="location.href='mainMenu'">Zurück zum Hauptmenü</button>
+        </div>
+<!-- Rest kommt wenn die Datenbank steht -->
+    </body>
+</html>

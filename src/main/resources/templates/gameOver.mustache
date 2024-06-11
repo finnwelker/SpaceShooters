@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+        <link rel="stylesheet" href="../static/gameOver">
+        <script src="http://localhost:35729/livereload.js" rel="preload" async></script>
+        <title>Spiel verloren</title>
+    </head>
+    <body>
+        <div class="button-container">
+            <button class="button" onclick="location.href='game'">Neustarten</button>
+            <button class="button" onclick="location.href='mainMenu'">Hauptmenü</button>
+        </div>
+        <h1>Erreichter Highscore:</h1>
+        <h2 id="highscore">XXX</h2>                                                                                     <!-- Kommt wenn die Datenbank steht -->
+        <div class="container">
+            <form method="post" id="highscore-form">                                                                    <!-- action=".." Kommt wenn die Datenbank steht -->
+                <label for="username">Name:</label>
+                <input type="text" id="username" name="name" placeholder="Benutzername" required>
+                <button class="submit-button" type="submit" value="submit-highscore" id="submit-button">Einreichen</button>
+            </form>
+        </div>
+        <script>
+            document.addEventListener('keydown', function(e)
+                    {
+                        if (e.key === "Enter")
+                        {
+                            window.location.href = 'game';
+                        }
+                        else if (e.keyCode === 27)
+                        {
+                            window.location.href = 'mainMenu';
+                        }
+                    }
+            );
+        </script>
+<!--    Rest kommt wenn die Datenbank steht -->
+    </body>
+</html>
