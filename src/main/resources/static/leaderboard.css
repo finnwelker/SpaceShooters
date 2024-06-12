@@ -19,7 +19,8 @@ body
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background: url('background3.png') no-repeat fixed center center;
+    background: url('background5.png') no-repeat fixed center center;
+    background-size: 100% 100%;
 }
 
 .leaderboard

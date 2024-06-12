@@ -19,13 +19,26 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>X.</td>                                                                                         <!-- Kommt wenn die Datenbank steht -->
-                    <td id="username">{{username}}</td>                                                                 <!-- Kommt wenn die Datenbank steht -->
-                    <td id="highscore">XXX</td>                                                                         <!-- Kommt wenn die Datenbank steht -->
+                    <td></td>
+                    <td id="username">{{username}}</td>
+                    <td id="highscore"></td>
                 </tr>
             </table>
-            <button class="button" onclick="location.href='profile'">Zurück</button>
+            <button class="button" onclick="goBack()">Zurück</button>
         </div>
-<!-- Rest kommt wenn die Datenbank steht -->
+        <script>
+            function goBack()
+            {
+                const params = new URLSearchParams(window.location.search);
+                const origin = params.get('origin');
+                if (origin === 'retry') {
+                    location.href = 'retry';
+                }
+                else
+                {
+                    location.href = 'mainMenu';
+                }
+            }
+        </script>
     </body>
 </html>

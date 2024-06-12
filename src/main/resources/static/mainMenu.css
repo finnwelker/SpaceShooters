@@ -20,6 +20,7 @@ body
     height: 100vh;
     margin: 0;
     background: url('background1.png') no-repeat fixed center center;
+    background-size: 100% 100%;
 }
 
 h1
