@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Erreichter Highscore:</h1>
-        <h2 id="highscore">XXX</h2>                                                                                     <!-- Kommt wenn die Datenbank steht -->
+        <h2 id="highscore"></h2>                                                                                     <!-- Kommt wenn die Datenbank steht -->
         <div class="container">
             <form method="post" id="highscore-form">                                                                    <!-- action=".." Kommt wenn die Datenbank steht -->
                 <label for="username">Name:</label>
@@ -21,6 +21,9 @@
             <button class="button" onclick="location.href='mainMenu'">Hauptmenü</button>
         </div>
         <script>
+
+            document.getElementById("highscore").innerHTML=sessionStorage.getItem('key');
+
             document.addEventListener('keydown', function(e)
                     {
                         if (e.key === "Enter")

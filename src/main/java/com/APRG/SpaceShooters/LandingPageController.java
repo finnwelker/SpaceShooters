@@ -1,5 +1,6 @@
 package com.APRG.SpaceShooters;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +15,13 @@ public class LandingPageController {
 //        return "start";
 //    }
 
+    @Autowired
+    private HighscoreRepository highscoreRepo;
+
     @GetMapping("/")
     public String landingPage(){
         return "landingPage";
     }
-
 
     @GetMapping("/game")
     public String gameLaunch(){
@@ -56,9 +59,18 @@ public class LandingPageController {
         return "mainMenu";
     }
 
+//    @PostMapping("/gameOver")
+//    public String gameOver(Model model, @RequestParam("score") int score){
+//        model.addAttribute("highscore", score);
+//        return "gameOver";
+//    }
+
 //    @PostMapping("/welcome")
 //    public String postingOn(Model model, @RequestParam("uName") String uName){
 //        model.addAttribute("username", uName);
 //        return "welcome";
 //    }
+
+
+
 }
