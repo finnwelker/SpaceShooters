@@ -28,11 +28,6 @@ public class LandingPageController {
         return "game";
     }
 
-    @GetMapping("/registerLogin")
-    public String registerLogin(){
-        return "registerLogin";
-    }
-
     @GetMapping("/settings")
     public String settings(){
         return "settings";

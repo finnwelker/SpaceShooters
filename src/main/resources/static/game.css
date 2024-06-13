@@ -12,15 +12,20 @@
 body
 {
     font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
     margin: 0;
-    background: url('background4.png') no-repeat fixed center center;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('backgroundGame.png') no-repeat fixed center center;
     background-size: 100% 100%;
 }
 
-/* Vllt. für die Zukunft */
+canvas
+{
+    border: 1px solid #d3d3d3;
+    background-color: #f1f1f1;
+    display: block; /* Entfernt den zusätzlichen Abstand unter dem Canvas-Element */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Fügt einen leichten Schatten hinzu */
+}
