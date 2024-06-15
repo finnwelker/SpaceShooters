@@ -5,13 +5,6 @@
     <link rel="stylesheet" href="../static/game.css">
     <title>Space Shooters</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <style>
-        canvas {
-            border: 1px solid #d3d3d3;
-            background-color: #f1f1f1;
-        }
-    </style>
-
 </head>
 <body onload="startGame()">
 <script>
@@ -41,10 +34,10 @@
         myGameArea.start();
         UIElementTop.start(0, 0);
         UIElementBot.start(0, 700);
-        scoreText = new UIElementText(70, 50, "Black", 450, 20);
-        playerGamePiece = new gameComponent(30,30, "black", 225, 600, true, 0);                                         //Add Player model
+        scoreText = new UIElementText(70, 50, "white", 450, 20);
+        playerGamePiece = new gameComponent(30,30, "gray", 225, 600, true, 0);                                         //Add Player model
         for(let i = 0; i < maxBullets; i++){                                                                           //Adds 8 bullets
-            bullets[i] = new gameComponent(2, 5, "blue", (i*10)+380, 707, false, 0);
+            bullets[i] = new gameComponent(2, 5, "../static/schuss.png", (i*10)+380, 707, false, 0);
             activeFlagsB[i] = true;
             bullets[i].draw = true;
         }
@@ -82,7 +75,8 @@
         UIElementTop.update();
 
         if(gameOverCheck()){
-            window.location.href = 'gameOver'
+            sessionStorage.setItem('gameState', 'over');
+            window.location.href = 'gameOverOrEnded'
             sessionStorage.setItem('key', score)
         }
     }
@@ -125,7 +119,7 @@
         },
         update: function(){
             let ctx = myGameArea.context;
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "#47008a";
             ctx.fillRect(this.x, this.y, this.width, this.height)
         }
     }
@@ -213,7 +207,7 @@
             bullets[bulletCounter].active = true;
             bulletCounter += 1;
         }else if(key === "Escape"){
-            window.location.href = 'mainMenu'
+            window.location.href = 'gameOverOrEnded'
         }
 
     }                                                                                       //Combine this with inputAction and deal with movement key and spacebar being pressed at the same time
@@ -312,7 +306,7 @@
             // bullets[i].active = false;
             // bullets[i].draw = true
             // activeFlagsB[i] = true;
-            bullets[i] = new gameComponent(2, 5, "blue", (i*10)+380, 707, false, 0);
+            bullets[i] = new gameComponent(2, 5, "../static/schuss.png", (i*10)+380, 707, false, 0);
             activeFlagsB[i] = true;
             bullets[i].draw = true;
         }

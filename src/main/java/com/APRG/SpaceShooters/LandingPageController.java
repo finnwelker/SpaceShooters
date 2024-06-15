@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LandingPageController {
-//    @GetMapping("/start")
-//    public String landingPage(){
-//        return "start";
-//    }
 
     @Autowired
     private HighscoreRepository highscoreRepo;
@@ -33,14 +29,29 @@ public class LandingPageController {
         return "settings";
     }
 
-    @GetMapping("/profile")
-    public String profile(){
-        return "profile";
+    @GetMapping("/leaderboard")
+    public String leaderboard(){
+        return "leaderboard";
     }
 
-    @GetMapping("/gameOver")
-    public String gameOver(){
-        return "gameOver";
+    @GetMapping("/gameOverOrEnded")
+    public String gameEnded(){
+        return "gameOverOrEnded";
+    }
+
+    @GetMapping("/retry")
+    public String retry(){
+        return "retry";
+    }
+
+    @GetMapping("/help")
+    public String help(){
+        return "help";
+    }
+
+    @GetMapping("/contributorsAndSources")
+    public String contributorsSources(){
+        return "contributorsAndSources";
     }
 
 //    @GetMapping("/mainMenu")
@@ -54,18 +65,10 @@ public class LandingPageController {
         return "mainMenu";
     }
 
-//    @PostMapping("/gameOver")
-//    public String gameOver(Model model, @RequestParam("score") int score){
+//    @PostMapping("/gameOverOrEnded")
+//    public String gameOverOrEnded(Model model, @RequestParam("score") int score){
 //        model.addAttribute("highscore", score);
-//        return "gameOver";
+//        return "gameOverOrEnded";
 //    }
-
-//    @PostMapping("/welcome")
-//    public String postingOn(Model model, @RequestParam("uName") String uName){
-//        model.addAttribute("username", uName);
-//        return "welcome";
-//    }
-
-
 
 }

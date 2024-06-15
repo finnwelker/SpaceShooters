@@ -2,8 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
-        <link rel="stylesheet" href="../static/gameEnded">
-        <title>Spiel vorbei</title>
+        <link rel="stylesheet" href="../static/gameOverOrEnded">
+        <title>Spiel verloren oder beendet</title>
     </head>
     <body>
         <h1>Erreichter Highscore:</h1>
@@ -17,6 +17,13 @@
         </div>
         <script>
             document.getElementById("highscore").innerHTML=sessionStorage.getItem('key');
+            if (sessionStorage.getItem('gameState') === 'over') {
+                document.querySelector('title').innerText = 'Spiel verloren';
+                document.body.style.backgroundImage = "url('../static/backgroundGameOver.png')";
+            } else {
+                document.querySelector('title').innerText = 'Spiel vorbei';
+                document.body.style.backgroundImage = "url('../static/backgroundGameEnded.png')";
+            }
         </script>
     </body>
 </html>
