@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
 public class LandingPageController {
@@ -49,10 +53,10 @@ public class LandingPageController {
     public String mainMenu(){
         return "mainMenu";
     }
-    @GetMapping("/leaderboard")
-    public String leaderboard(){
-        return "leaderboard";
-    }
+//    @GetMapping("/leaderboard")
+//    public String leaderboard(){
+//        return "leaderboard";
+//    }
     @GetMapping("/help")
     public String help(){
         return "help";
@@ -70,6 +74,18 @@ public class LandingPageController {
         model.addAttribute("username", username);
         model.addAttribute("highscore", highscore);
         return "retry";
+    }
+
+    @GetMapping("/leaderboard")
+    public String leaderboard(Model model){
+        List<String> names = highscoreRepo.findNames();
+        List<Integer> highscores = highscoreRepo.findScores();
+        for(int i = 1;i < 6; i++ ){
+            model.addAttribute("username"+i, names.get(i-1));
+            model.addAttribute("highscore"+i, highscores.get(i-1));
+        }
+
+        return "leaderboard";
     }
 
 

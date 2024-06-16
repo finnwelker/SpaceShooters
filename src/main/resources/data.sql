@@ -7,4 +7,5 @@ INSERT INTO HIGHSCORES(name, highscore)
 VALUES ('Gandalf', 100),
        ('Detlef', 550),
        ('Sara', 300),
-       ('Kira', 2000);
+       ('Kira', 2000),
+       ('Franz', 800);
