@@ -7,16 +7,18 @@
     </head>
     <body>
         <h1>Erreichter Highscore:</h1>
-        <h2 id="highscore"></h2>
+        <h2 id="highscore" name="score" method="post"></h2>
         <div class="container">
-            <form action="retry.mustache" method="post" id="highscore-form">
+            <form action="retry" method="post" id="highscore-form">
                 <label for="username">Name:</label>
-                <input type="text" id="username" name="name" placeholder="Benutzername" required>
+                <input type="hidden" id="highscorePost" name="highscore">
+                <input type="text" id="username" name="username" placeholder="Benutzername" required>
                 <button class="submit-button" type="submit" value="submit-highscore" id="submit-button">Einreichen</button>
             </form>
         </div>
         <script>
-            document.getElementById("highscore").innerHTML=sessionStorage.getItem('key');
+            document.getElementById("highscore").innerHTML=sessionStorage.getItem('score');
+            document.getElementById("highscorePost").value=sessionStorage.getItem('score');
             if (sessionStorage.getItem('gameState') === 'over') {
                 document.querySelector('title').innerText = 'Spiel verloren';
                 document.body.style.backgroundImage = "url('../static/backgroundGameOver.png')";

@@ -28,6 +28,8 @@
     let score = 0;
     let activeFlagsE = [false, false, false, false, false];
     let activeFlagsB = [false, false, false, false, false, false, false, false];
+    let velocityMulti = 8;
+    let waveCounter = 1;
 
 
     function startGame(){
@@ -77,7 +79,7 @@
         if(gameOverCheck()){
             sessionStorage.setItem('gameState', 'over');
             window.location.href = 'gameOverOrEnded'
-            sessionStorage.setItem('key', score)
+            sessionStorage.setItem('score', score)
         }
     }
 
@@ -222,12 +224,12 @@
     }
 
     function enemyHorizontalMovement(enemy){
-        enemy.newX += .33*movementDirection;    //.33 is the speed, movementDirection is side (-1 = left, +1 = right)
+        enemy.newX += .33*movementDirection*velocityMulti;    //.33 is the speed, movementDirection is side (-1 = left, +1 = right)
     }
 
     function  enemyVerticalMovement(enemy){
         if(enemy.newY<=yTarget){                   //Vertical movement up until 20 px ahead (yOld increments by 20)
-            enemy.newY += .2;
+            enemy.newY += .2*velocityMulti;
         }
 
     }

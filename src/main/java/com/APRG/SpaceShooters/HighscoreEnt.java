@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("HIGHSCORE")
+@Table("HIGHSCORES")
 public class HighscoreEnt {
 
     @Id
@@ -14,10 +14,10 @@ public class HighscoreEnt {
     private final String name;
 
     @Column
-    private final int score;
+    private final int highscore;
 
-    HighscoreEnt(String name, int score) {
+    HighscoreEnt(String name, int highscore) {
         this.name = name;
-        this.score = score;
+        this.highscore = highscore;
     }
 }

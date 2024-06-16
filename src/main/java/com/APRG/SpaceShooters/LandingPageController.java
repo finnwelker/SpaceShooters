@@ -10,9 +10,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LandingPageController {
+//    @GetMapping("/start")
+//    public String landingPage(){
+//        return "start";
+//    }
 
     @Autowired
     private HighscoreRepository highscoreRepo;
+
+//    LandingPageController(HighscoreRepository highscoreRepo) {this.highscoreRepo = highscoreRepo;}
 
     @GetMapping("/")
     public String landingPage(){
@@ -29,46 +35,62 @@ public class LandingPageController {
         return "settings";
     }
 
+    @GetMapping("/profile")
+    public String profile(){
+        return "profile";
+    }
+
+    @GetMapping("/gameOverOrEnded")
+    public String gameOver(){
+        return "gameOverOrEnded";
+    }
+
+    @GetMapping("/mainMenu")
+    public String mainMenu(){
+        return "mainMenu";
+    }
     @GetMapping("/leaderboard")
     public String leaderboard(){
         return "leaderboard";
     }
-
-    @GetMapping("/gameOverOrEnded")
-    public String gameEnded(){
-        return "gameOverOrEnded";
-    }
-
-    @GetMapping("/retry")
-    public String retry(){
-        return "retry";
-    }
-
     @GetMapping("/help")
     public String help(){
         return "help";
     }
-
     @GetMapping("/contributorsAndSources")
-    public String contributorsSources(){
+    public String contributorsAndSources(){
         return "contributorsAndSources";
     }
 
-//    @GetMapping("/mainMenu")
-//    public String mainMenu(){
+    @PostMapping("/retry")
+    public String retry(Model model, @RequestParam String username, @RequestParam Integer highscore){
+        var newScore = new HighscoreEnt(username, highscore);
+        highscoreRepo.save(newScore);
+
+        model.addAttribute("username", username);
+        model.addAttribute("highscore", highscore);
+        return "retry";
+    }
+
+
+//    @PostMapping("/mainMenu")
+//    public String mainMenu(Model model, @RequestParam("username") String uName){
+//        model.addAttribute("username", uName);
 //        return "mainMenu";
 //    }
 
-    @PostMapping("/mainMenu")
-    public String mainMenu(Model model, @RequestParam("username") String uName){
-        model.addAttribute("username", uName);
-        return "mainMenu";
-    }
-
-//    @PostMapping("/gameOverOrEnded")
-//    public String gameOverOrEnded(Model model, @RequestParam("score") int score){
+//    @PostMapping("/gameOver")
+//    public String gameOver(Model model, @RequestParam("score") int score){
 //        model.addAttribute("highscore", score);
-//        return "gameOverOrEnded";
+//        return "gameOver";
 //    }
+
+//    @PostMapping("/welcome")
+//    public String postingOn(Model model, @RequestParam("uName") String uName){
+//        model.addAttribute("username", uName);
+//        return "welcome";
+//    }
+
+
 
 }
