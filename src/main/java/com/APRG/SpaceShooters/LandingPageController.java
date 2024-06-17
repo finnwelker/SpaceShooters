@@ -39,11 +39,6 @@ public class LandingPageController {
         return "settings";
     }
 
-    @GetMapping("/profile")
-    public String profile(){
-        return "profile";
-    }
-
     @GetMapping("/gameOverOrEnded")
     public String gameOver(){
         return "gameOverOrEnded";
@@ -95,18 +90,10 @@ public class LandingPageController {
 //        return "mainMenu";
 //    }
 
-//    @PostMapping("/gameOver")
-//    public String gameOver(Model model, @RequestParam("score") int score){
+//    @PostMapping("/gameOverOrEnded")
+//    public String gameOverOrEnded(Model model, @RequestParam("score") int score){
 //        model.addAttribute("highscore", score);
-//        return "gameOver";
+//        return "gameOverOrEnded";
 //    }
-
-//    @PostMapping("/welcome")
-//    public String postingOn(Model model, @RequestParam("uName") String uName){
-//        model.addAttribute("username", uName);
-//        return "welcome";
-//    }
-
-
 
 }
