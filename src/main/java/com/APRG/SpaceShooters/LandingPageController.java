@@ -48,10 +48,7 @@ public class LandingPageController {
     public String mainMenu(){
         return "mainMenu";
     }
-//    @GetMapping("/leaderboard")
-//    public String leaderboard(){
-//        return "leaderboard";
-//    }
+
     @GetMapping("/help")
     public String help(){
         return "help";

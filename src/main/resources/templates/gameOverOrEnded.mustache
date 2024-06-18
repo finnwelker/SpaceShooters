@@ -20,6 +20,7 @@
         <script>
             document.getElementById("highscore").innerHTML=sessionStorage.getItem('score');
             document.getElementById("highscorePost").value=sessionStorage.getItem('score');
+            sessionStorage.setItem('score', "0");
             if (sessionStorage.getItem('gameState') === 'over') {
                 document.querySelector('title').innerText = 'Spiel verloren';
                 document.body.style.backgroundImage = "url('../static/backgroundGameOver.png')";

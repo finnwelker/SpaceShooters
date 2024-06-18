@@ -29,18 +29,20 @@
     let score = 0;
     let activeFlagsE = [false, false, false, false, false];
     let activeFlagsB = [false, false, false, false, false, false, false, false];
-    let velocityMulti = 8;
-    let waveCounter = 1;
+    let velocityMulti = .5;
+    let waveCounter = 0;
+    let globalOverrule = false;
 
 
     function startGame(){
+        score = 0;
         myGameArea.start();
         UIElementTop.start(0, 0);
         UIElementBot.start(0, 700);
         scoreText = new UIElementText(70, 50, "white", 450, 20);
         playerGamePiece = new gameComponent(30,30, "gray", 225, 600, true, 0);                                         //Add Player model
         for(let i = 0; i < maxBullets; i++){                                                                           //Adds 8 bullets
-            bullets[i] = new gameComponent(2, 5, "../static/schuss.png", (i*10)+380, 707, false, 0);
+            bullets[i] = new bulletGameComponent(2, 5, "blue", (i*10)+380, 707, false, 0);
             activeFlagsB[i] = true;
             bullets[i].draw = true;
         }
@@ -51,7 +53,6 @@
         document.addEventListener("keydown", (event) =>{
             map[event.key] = event.type === "keydown";
             inputDirection();
-            inputAction(event.key)
         })
         document.addEventListener("keyup", (event)=>{
             map[event.key] = false;
@@ -167,8 +168,8 @@
             else if(this.newY < 20){
                 this.newY = 20;
             }
-            else if(this.newY>720){
-                this.newY=720
+            else if(this.newY>700){
+                this.newY=700;
             }
             this.x = this.newX;
             this.y = this.newY;
@@ -177,40 +178,103 @@
 
     }
 
+    function bulletGameComponent(width, height, color, x, y, active, id) {
+        this.width = width;
+        this.height = height;
+        this.x = x;
+        this.y = y;
+        this.newX = x;
+        this.newY = y;
+        this.id = id;
+        this.active = active;
+        this.draw = true;
+        this.update = function () {
+            if (this.draw) {
+                ctx = myGameArea.context;
+                ctx.fillStyle = color;
+                ctx.fillRect(this.x, this.y, this.width, this.height)
+            }
+        }
+        this.newPos = function () {
+            if (this.newX < 0) {
+                this.newX = 0;
+            } else if (this.newX > 480) {
+                this.newX = 480;
+            } else if (this.newY < 0) {
+                this.newY = 0;
+            } else if (this.newY > 720) {
+                this.newY = 720;
+            }
+            this.x = this.newX;
+            this.y = this.newY;
+
+        }
+    }
+
     function inputDirection(){
             //geht das schöner bzw smoother?
-            if(map["w"]&&!map["a"]&&!map["d"]) {
+            if(map["Escape"]){
+                console.log("asdasd")
+                globalOverrule = true;
+            }else if(map["w"]&&!map["a"]&&!map["d"]&&!map[" "]) {
                 playerGamePiece.newY -= 5;
-            }else if(map["s"]&&!map["a"]&&!map["d"]){
+            }else if(map["s"]&&!map["a"]&&!map["d"]&&!map[" "]){
                 playerGamePiece.newY += 5;
-            }else if(map["a"]&&!map["w"]&&!map["s"]){
+            }else if(map["a"]&&!map["w"]&&!map["s"]&&!map[" "]){
                 playerGamePiece.newX -= 5;
-            }else if(map["d"]&&!map["w"]&&!map["s"]){
+            }else if(map["d"]&&!map["w"]&&!map["s"]&&!map[" "]){
                 playerGamePiece.newX += 5;
-            }else if(map["w"]&&map["a"]) {
+            }else if(map["w"]&&map["a"]&&!map[" "]) {
                 playerGamePiece.newY -= 5;
                 playerGamePiece.newX -= 5;
-            }else if(map["s"]&&map["a"]){
+            }else if(map["s"]&&map["a"]&&!map[" "]){
                 playerGamePiece.newY += 5;
                 playerGamePiece.newX -= 5;
-            }else if(map["s"]&&map["d"]){
+            }else if(map["s"]&&map["d"]&&!map[" "]){
                 playerGamePiece.newY += 5;
                 playerGamePiece.newX += 5;
-            }else if(map["w"]&&map["d"]){
+            }else if(map["w"]&&map["d"]&&!map[" "]){
                 playerGamePiece.newY -= 5;
                 playerGamePiece.newX += 5;
-
+            }else if(map["w"]&&!map["a"]&&!map["d"]&&map[" "]) {
+                playerGamePiece.newY -= 5;
+                shoot();
+            }else if(map["s"]&&!map["a"]&&!map["d"]&&map[" "]){
+                playerGamePiece.newY += 5;
+                shoot();
+            }else if(map["a"]&&!map["w"]&&!map["s"]&&map[" "]){
+                playerGamePiece.newX -= 5;
+                shoot();
+            }else if(map["d"]&&!map["w"]&&!map["s"]&&map[" "]){
+                playerGamePiece.newX += 5;
+                shoot();
+            }else if(map["w"]&&map["a"]&&map[" "]) {
+                playerGamePiece.newY -= 5;
+                playerGamePiece.newX -= 5;
+                shoot();
+            }else if(map["s"]&&map["a"]&&map[" "]){
+                playerGamePiece.newY += 5;
+                playerGamePiece.newX -= 5;
+                shoot();
+            }else if(map["s"]&&map["d"]&&map[" "]){
+                playerGamePiece.newY += 5;
+                playerGamePiece.newX += 5;
+                shoot();
+            }else if(map["w"]&&map["d"]&&map[" "]) {
+                playerGamePiece.newY -= 5;
+                playerGamePiece.newX += 5;
+                shoot();
+            }else if(map[" "]){
+                shoot();
             }
     }
 
-    function inputAction(key){
-        if(key === " " && bulletCounter < maxBullets){                        // " " ist spacebar
+    function shoot(){
+        if(bulletCounter < maxBullets){                        // " " ist spacebar
             bullets[bulletCounter].newX = playerGamePiece.x+15;
             bullets[bulletCounter].newY = playerGamePiece.y;
             bullets[bulletCounter].active = true;
             bulletCounter += 1;
-        }else if(key === "Escape"){
-            window.location.href = 'gameOverOrEnded'
         }
 
     }                                                                                       //Combine this with inputAction and deal with movement key and spacebar being pressed at the same time
@@ -285,10 +349,10 @@
                 enemy.active = false;
                 newWave();
             }
-        }else if(bullets[index].y < 30){
+        }else if(bullets[index].y === 0){
             bullets[index].draw = false;
             bullets[index].active = false;
-            bullets[index].y = 707;
+            bullets[index].newY = 707;
             activeFlagsB[index] = false;
             if (!reloadCheck()){
                 reloadBullets();
@@ -304,12 +368,7 @@
 
     function reloadBullets(){
         for(let i = 0; i < maxBullets; i++){                                                                           //Adds 8 bullets
-            // bullets[i].x = i*10+380;
-            // bullets[i].y = 707;
-            // bullets[i].active = false;
-            // bullets[i].draw = true
-            // activeFlagsB[i] = true;
-            bullets[i] = new gameComponent(2, 5, "../static/schuss.png", (i*10)+380, 707, false, 0);
+            bullets[i] = new bulletGameComponent(2, 5, "blue", (i*10)+380, 707, false, 0);
             activeFlagsB[i] = true;
             bullets[i].draw = true;
         }
@@ -318,6 +377,10 @@
 
     function newWave(){
         if(!newWaveCheck()){
+            yTarget = 120;
+            waveCounter+=1;
+            velocityMulti +=.5;
+            movementToken=false;
             for (let i = 0; i < enemyCount; i++){
                 enemies[i] = new gameComponent(30,30, "red", 20*(i*5)+1, 100, true, i);
                 activeFlagsE[i]=true;
@@ -346,7 +409,7 @@
 
     function gameOverCheck(){
         for (let i = 0; i < enemyCount; i++){
-            if(enemies[i].y>=690){                                                                                     //Enemies reached bottom | TODO: Implement Game over screen - Pause game
+            if(enemies[i].y>=670||globalOverrule){                                                                                     //Enemies reached bottom | TODO: Implement Game over screen - Pause game
                 console.log("GAME OVER")
                 return true;
             }
