@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
-        <link rel="stylesheet" href="../static/gameOverOrEnded">
-        <link rel="icon" type="image/png" href="../static/logo.png">
+        <link rel="stylesheet" href="../gameOverOrEnded.css">
+        <link rel="icon" type="image/png" href="../logo.png">
         <title>Spiel verloren oder beendet</title>
     </head>
     <body>
         <h1>Erreichter Highscore:</h1>
         <h2 id="highscore" name="score" method="post"></h2>
-        <div class="container">
+        <div class="submit-container">
             <form action="retry" method="post" id="highscore-form">
                 <label for="username">Name:</label>
                 <input type="hidden" id="highscorePost" name="highscore">
@@ -21,12 +21,15 @@
             document.getElementById("highscore").innerHTML=sessionStorage.getItem('score');
             document.getElementById("highscorePost").value=sessionStorage.getItem('score');
             sessionStorage.setItem('score', "0");
-            if (sessionStorage.getItem('gameState') === 'over') {
+            if (sessionStorage.getItem('gameState') === 'over')
+            {
                 document.querySelector('title').innerText = 'Spiel verloren';
-                document.body.style.backgroundImage = "url('../static/backgroundGameOver.png')";
-            } else {
+                document.body.style.backgroundImage = "url('../backgroundGameOver.png')";
+            }
+            else
+            {
                 document.querySelector('title').innerText = 'Spiel vorbei';
-                document.body.style.backgroundImage = "url('../static/backgroundGameEnded.png')";
+                document.body.style.backgroundImage = "url('../backgroundGameEnded.png')";
             }
         </script>
     </body>

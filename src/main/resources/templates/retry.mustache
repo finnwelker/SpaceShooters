@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
-        <link rel="stylesheet" href="../static/retry">
-        <link rel="icon" type="image/png" href="../static/logo.png">
+        <link rel="stylesheet" href="../retry.css">
+        <link rel="icon" type="image/png" href="../logo.png">
         <title>Erneut Versuchen</title>
     </head>
     <body>
-        <div class="button-container">
-            <button class="button" onclick="location.href='game'">Neustarten</button>
-            <button class="button" onclick="location.href='mainMenu'">Hauptmenü</button>
-            <br>
+        <div>
+            <button class="retry-button" onclick="location.href='game'">Neustarten</button>
+            <button class="retry-button" onclick="location.href='mainMenu'">Hauptmenü</button>
+        </div>
+        <div>
             <button class="leaderboard-button" onclick="location.href='leaderboard?origin=retry'">Leaderboard</button>
         </div>
         <script>

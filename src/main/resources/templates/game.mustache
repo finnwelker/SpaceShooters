@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../static/game.css">
-    <link rel="icon" type="image/png" href="../static/logo.png">
+    <link rel="stylesheet" href="../game.css">
+    <link rel="icon" type="image/png" href="../logo.png">
     <title>Space Shooters</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -11,7 +11,7 @@
 <script>
 
     let img = new Image();
-    img.src = "../static/bg.png";
+    img.src = "../backgroundIngame.png";
     let playerGamePiece;
     let scoreText;
 
@@ -40,9 +40,9 @@
         UIElementTop.start(0, 0);
         UIElementBot.start(0, 700);
         scoreText = new UIElementText(70, 50, "white", 450, 20);
-        playerGamePiece = new gameComponent(30,30, "gray", 225, 600, true, 0);                                         //Add Player model
+        playerGamePiece = new gameComponent(30,30, "../player.png", 225, 600, true, 0);                                         //Add Player model
         for(let i = 0; i < maxBullets; i++){                                                                           //Adds 8 bullets
-            bullets[i] = new bulletGameComponent(2, 5, "blue", (i*10)+380, 707, false, 0);
+            bullets[i] = new bulletGameComponent(2, 5, "../shot.png", (i*10)+380, 707, false, 0);
             activeFlagsB[i] = true;
             bullets[i].draw = true;
         }
@@ -91,7 +91,7 @@
             this.canvas.width = 480;
             this.canvas.height = 720;
             this.context = this.canvas.getContext("2d");
-            // this.context.drawImage(img, 0 ,0)
+            // this.context.drawImage(img, 480 ,720)
             document.body.insertBefore(this.canvas, document.body.childNodes[0]);
             this.interval = setInterval(updateGame, 20)
         },
@@ -109,7 +109,7 @@
         },
         update: function(){
             let ctx = myGameArea.context;
-            ctx.fillStyle = "black";
+            ctx.fillStyle = "../player.png";
             ctx.fillRect(this.x, this.y, this.width, this.height)
         }
     }
@@ -135,7 +135,7 @@
         this.y = y;
         this.update = function(){
             ctx = myGameArea.context;
-            ctx.font = this.width + " " + this.height;
+            ctx.font = this.width + "  " + this.height;
             ctx.fillStyle = color;
             ctx.fillText(score, this.x, this.y)
         }
@@ -154,7 +154,7 @@
         this.update = function(){
             if(this.draw){
                 ctx = myGameArea.context;
-                ctx.fillStyle = color;
+                ctx.fillStyle = "../enemies.png";
                 ctx.fillRect(this.x, this.y, this.width, this.height)
             }
         }
@@ -191,7 +191,7 @@
         this.update = function () {
             if (this.draw) {
                 ctx = myGameArea.context;
-                ctx.fillStyle = color;
+                ctx.fillStyle = "../shot.png";
                 ctx.fillRect(this.x, this.y, this.width, this.height)
             }
         }
@@ -214,7 +214,7 @@
     function inputDirection(){
             //geht das schöner bzw smoother?
             if(map["Escape"]){
-                console.log("asdasd")
+                console.log("asdasd") //?
                 globalOverrule = true;
             }else if(map["w"]&&!map["a"]&&!map["d"]&&!map[" "]) {
                 playerGamePiece.newY -= 5;
@@ -368,7 +368,7 @@
 
     function reloadBullets(){
         for(let i = 0; i < maxBullets; i++){                                                                           //Adds 8 bullets
-            bullets[i] = new bulletGameComponent(2, 5, "blue", (i*10)+380, 707, false, 0);
+            bullets[i] = new bulletGameComponent(2, 5, "../shot.png", (i*10)+380, 707, false, 0);
             activeFlagsB[i] = true;
             bullets[i].draw = true;
         }
@@ -382,7 +382,7 @@
             velocityMulti +=.5;
             movementToken=false;
             for (let i = 0; i < enemyCount; i++){
-                enemies[i] = new gameComponent(30,30, "red", 20*(i*5)+1, 100, true, i);
+                enemies[i] = new gameComponent(30,30, "../enemies.png", 20*(i*5)+1, 100, true, i);
                 activeFlagsE[i]=true;
             }
         }

@@ -19,19 +19,11 @@ body
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background: url('backgroundGameEnded.png') no-repeat fixed center center;
+    background: url('backgroundRetry.png') no-repeat fixed center center;
     background-size: 100% 100%;
 }
 
-.container
-{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-button
+.retry-button
 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
@@ -46,6 +38,7 @@ button
     margin-left: 25px;
     margin-right: 25px;
     margin-bottom: 25px;
+    align-self: center;
 }
 
 .leaderboard-button
@@ -64,7 +57,7 @@ button
     align-self: center;
 }
 
-button:hover,
+.retry-button:hover,
 .leaderboard-button:hover
 {
     background: rgba(71, 0, 138, 0.6);

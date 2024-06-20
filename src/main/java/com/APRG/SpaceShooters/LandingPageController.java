@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,51 +23,50 @@ public class LandingPageController {
 //    LandingPageController(HighscoreRepository highscoreRepo) {this.highscoreRepo = highscoreRepo;}
 
     @GetMapping("/")
-    public String landingPage(){
+    public String landingPage()
+    {
         return "landingPage";
     }
 
     @GetMapping("/game")
-    public String gameLaunch(){
+    public String gameLaunch()
+    {
         return "game";
     }
 
     @GetMapping("/settings")
-    public String settings(){
+    public String settings()
+    {
         return "settings";
     }
 
     @GetMapping("/gameOverOrEnded")
-    public String gameOver(){
+    public String gameOver()
+    {
         return "gameOverOrEnded";
     }
 
     @GetMapping("/mainMenu")
-    public String mainMenu(){
+    public String mainMenu()
+    {
         return "mainMenu";
     }
 
-    @GetMapping("/help")
-    public String help(){
-        return "help";
+    @GetMapping("/controls")
+    public String help()
+    {
+        return "controls";
     }
+
     @GetMapping("/contributorsAndSources")
-    public String contributorsAndSources(){
+    public String contributorsAndSources()
+    {
         return "contributorsAndSources";
     }
 
-    @PostMapping("/retry")
-    public String retry(Model model, @RequestParam String username, @RequestParam Integer highscore){
-        var newScore = new HighscoreEnt(username, highscore);
-        highscoreRepo.save(newScore);
-
-        model.addAttribute("username", username);
-        model.addAttribute("highscore", highscore);
-        return "retry";
-    }
-
     @GetMapping("/leaderboard")
-    public String leaderboard(Model model){
+    public String leaderboard(Model model)
+    {
         List<String> names = highscoreRepo.findNames();
         List<Integer> highscores = highscoreRepo.findScores();
         for(int i = 1;i < 6; i++ ){
@@ -80,15 +77,33 @@ public class LandingPageController {
         return "leaderboard";
     }
 
+    @GetMapping("/retry")
+    public String retry(Model model, @RequestParam(required = false) String origin) {
+        model.addAttribute("origin", origin);
+        return "retry";
+    }
+
+    @PostMapping("/retry")
+    public String retry(Model model, @RequestParam String username, @RequestParam Integer highscore)
+    {
+        var newScore = new HighscoreEnt(username, highscore);
+        highscoreRepo.save(newScore);
+
+        model.addAttribute("username", username);
+        model.addAttribute("highscore", highscore);
+        return "retry";
+    }
 
 //    @PostMapping("/mainMenu")
-//    public String mainMenu(Model model, @RequestParam("username") String uName){
+//    public String mainMenu(Model model, @RequestParam("username") String uName)
+//    {
 //        model.addAttribute("username", uName);
 //        return "mainMenu";
 //    }
 
 //    @PostMapping("/gameOverOrEnded")
-//    public String gameOverOrEnded(Model model, @RequestParam("score") int score){
+//    public String gameOverOrEnded(Model model, @RequestParam("score") int score)
+//    {
 //        model.addAttribute("highscore", score);
 //        return "gameOverOrEnded";
 //    }
