@@ -10,11 +10,8 @@
 <body onload="startGame()">
 <script>
 
-    let img = new Image();
-    img.src = "../backgroundIngame.png";
     let playerGamePiece;
     let scoreText;
-
     let map = {};
     let enemies = [];
     let gameStage = 1;
@@ -33,16 +30,15 @@
     let waveCounter = 0;
     let globalOverrule = false;
 
-
     function startGame(){
         score = 0;
         myGameArea.start();
-        UIElementTop.start(0, 0);
-        UIElementBot.start(0, 700);
-        scoreText = new UIElementText(70, 50, "white", 450, 20);
-        playerGamePiece = new gameComponent(30,30, "../player.png", 225, 600, true, 0);                                         //Add Player model
+        UIElementTop.start(480, 20, 0, 0);
+        UIElementBot.start(0, 900);
+        scoreText = new UIElementText(70, 50, "black", 50, 5);
+        playerGamePiece = new gameComponent(30,30, "black", 225, 800, true, 0);                                         //Add Player model
         for(let i = 0; i < maxBullets; i++){                                                                           //Adds 8 bullets
-            bullets[i] = new bulletGameComponent(2, 5, "../shot.png", (i*10)+380, 707, false, 0);
+            bullets[i] = new bulletGameComponent(2, 5, "blue", (i*10)+380, 907, false, 0);
             activeFlagsB[i] = true;
             bullets[i].draw = true;
         }
@@ -89,7 +85,7 @@
         canvas : document.createElement("canvas"),
         start : function() {
             this.canvas.width = 480;
-            this.canvas.height = 720;
+            this.canvas.height = 920;
             this.context = this.canvas.getContext("2d");
             // this.context.drawImage(img, 480 ,720)
             document.body.insertBefore(this.canvas, document.body.childNodes[0]);
@@ -109,7 +105,7 @@
         },
         update: function(){
             let ctx = myGameArea.context;
-            ctx.fillStyle = "../player.png";
+            ctx.fillStyle = "purple";
             ctx.fillRect(this.x, this.y, this.width, this.height)
         }
     }
@@ -154,7 +150,7 @@
         this.update = function(){
             if(this.draw){
                 ctx = myGameArea.context;
-                ctx.fillStyle = "../enemies.png";
+                ctx.fillStyle = "red";
                 ctx.fillRect(this.x, this.y, this.width, this.height)
             }
         }
@@ -168,8 +164,8 @@
             else if(this.newY < 20){
                 this.newY = 20;
             }
-            else if(this.newY>700){
-                this.newY=700;
+            else if(this.newY>900){
+                this.newY=900;
             }
             this.x = this.newX;
             this.y = this.newY;
@@ -202,8 +198,8 @@
                 this.newX = 480;
             } else if (this.newY < 0) {
                 this.newY = 0;
-            } else if (this.newY > 720) {
-                this.newY = 720;
+            } else if (this.newY > 920) {
+                this.newY = 920;
             }
             this.x = this.newX;
             this.y = this.newY;
@@ -352,7 +348,7 @@
         }else if(bullets[index].y === 0){
             bullets[index].draw = false;
             bullets[index].active = false;
-            bullets[index].newY = 707;
+            bullets[index].newY = 907;
             activeFlagsB[index] = false;
             if (!reloadCheck()){
                 reloadBullets();
@@ -368,7 +364,7 @@
 
     function reloadBullets(){
         for(let i = 0; i < maxBullets; i++){                                                                           //Adds 8 bullets
-            bullets[i] = new bulletGameComponent(2, 5, "../shot.png", (i*10)+380, 707, false, 0);
+            bullets[i] = new bulletGameComponent(2, 5, ".blue", (i*10)+380, 907, false, 0);
             activeFlagsB[i] = true;
             bullets[i].draw = true;
         }
@@ -409,7 +405,7 @@
 
     function gameOverCheck(){
         for (let i = 0; i < enemyCount; i++){
-            if(enemies[i].y>=670||globalOverrule){                                                                                     //Enemies reached bottom | TODO: Implement Game over screen - Pause game
+            if(enemies[i].y>=890||globalOverrule){                                                                                     //Enemies reached bottom | TODO: Implement Game over screen - Pause game
                 console.log("GAME OVER")
                 return true;
             }
