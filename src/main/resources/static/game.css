@@ -18,7 +18,7 @@ body
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url('backgroundGame.png') no-repeat fixed center center;
+    background: url('backgroundIngame.png') no-repeat fixed center center;
     background-size: 100% 100%;
 }
 

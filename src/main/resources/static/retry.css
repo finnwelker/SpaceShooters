@@ -19,7 +19,7 @@ body
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background: url('backgroundRetry.png') no-repeat fixed center center;
+    background: url('backgroundGameOver.png') no-repeat fixed center center;
     background-size: 100% 100%;
 }
 

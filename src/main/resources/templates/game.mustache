@@ -38,7 +38,7 @@
         scoreText = new UIElementText(70, 50, "black", 50, 5);
         playerGamePiece = new gameComponent(30,30, "black", 225, 800, true, 0);                                         //Add Player model
         for(let i = 0; i < maxBullets; i++){                                                                           //Adds 8 bullets
-            bullets[i] = new bulletGameComponent(2, 5, "blue", (i*10)+380, 907, false, 0);
+            bullets[i] = new bulletGameComponent(2, 5, "../shot.png", (i*10)+380, 907, false, 0);
             activeFlagsB[i] = true;
             bullets[i].draw = true;
         }
@@ -105,7 +105,7 @@
         },
         update: function(){
             let ctx = myGameArea.context;
-            ctx.fillStyle = "purple";
+            ctx.fillStyle = "#47008a";
             ctx.fillRect(this.x, this.y, this.width, this.height)
         }
     }
@@ -364,7 +364,7 @@
 
     function reloadBullets(){
         for(let i = 0; i < maxBullets; i++){                                                                           //Adds 8 bullets
-            bullets[i] = new bulletGameComponent(2, 5, ".blue", (i*10)+380, 907, false, 0);
+            bullets[i] = new bulletGameComponent(2, 5, "../shot.png", (i*10)+380, 907, false, 0);
             activeFlagsB[i] = true;
             bullets[i].draw = true;
         }
